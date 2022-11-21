@@ -1,0 +1,62 @@
+
+import java.io.IOException;
+import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.Scanner;
+
+public class no_4 {
+
+	public static void main(String[] args) {
+		int a;
+		String str1, str2;
+
+		try (Scanner input = new Scanner(Paths.get("input.txt"))) {
+			System.out.println("StudentId First Name Last Name");
+			List<Student> student = new ArrayList<Student>();
+			a = input.nextInt();
+			str1 = input.next();
+			str2 = input.next();
+			System.out.printf("%-8d  %-10s %-10s %n", a, str1, str2);
+			student.add(new Student(a, str1, str2));
+
+			while (input.hasNext()) {
+				a = input.nextInt();
+				str1 = input.next();
+				str2 = input.next();
+				System.out.printf("%-8d  %-10s %-10s %n", a, str1, str2);
+				student.add(new Student(a, str1, str2));
+			}
+			System.out.println();
+
+			System.out.println("Unsorted array elements:");
+			System.out.println("[");
+			for (int i = 0; i < student.size(); i++) {
+				if (i != student.size() - 1) {
+					System.out.println(student.get(i) + ",");
+				} else if (i == student.size() - 1) {
+					System.out.println(student.get(i) + "]");
+				}
+			}
+			System.out.println();
+
+			Collections.sort(student, new Student());
+			System.out.println("Sorted array elements:");
+			System.out.println("[");
+			for (int i = 0; i < student.size(); i++) {
+				if (i != student.size() - 1) {
+					System.out.println(student.get(i) + ",");
+				} else if (i == student.size() - 1) {
+					System.out.println(student.get(i) + "]");
+				}
+			}
+			System.out.println();
+
+		} catch (IOException ioException) {
+			ioException.printStackTrace();
+		}
+
+	}
+
+}
